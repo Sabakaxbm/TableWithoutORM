@@ -11,11 +11,11 @@ export const tableRows: tableRowsProps = {
         null: '',
     },
     amount: {
-        type: "VARCHAR",
+        type: "INTEGER",
         null: '',
     },
     distance: {
-        type: "VARCHAR",
+        type: "INTEGER",
         null: '',
     },
 }
@@ -23,7 +23,7 @@ export const tableRows: tableRowsProps = {
 export const distanceSchema = {
     type: "object",
     properties: {
-        date: {type: "string"},
+        date: {type: "integer"},
         name: {type: "string"},
         amount: {type: "integer"},
         distance: {type: "integer"}

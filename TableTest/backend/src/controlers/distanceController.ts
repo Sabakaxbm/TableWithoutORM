@@ -6,7 +6,7 @@ import {QueryResult} from "pg";
 import {distanceSchema} from "../schema/distanceSchema";
 import {createInsert} from "../services/dbMethods";
 const Ajv = require("ajv")
-const ajv = new Ajv() // options can be passed, e.g. {allErrors: true}
+const ajv = new Ajv()
 
 const table = 'distance'
 
