@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './styles.scss';
-import Table from './components/ui/Table';
-import { getRequest } from './http/getTableInfo';
+import FilterComponent from './components/ui/filterOptions/FilterComponent';
+import TablePage from './page/TablePage';
 
 const App: React.FC = () => {
-  const [distanceInfo, setDistanceInfo] = useState<any[]>([]);
-  const getDistanceInfo = async (): Promise<void> => {
-    setDistanceInfo(await getRequest());
-  };
-  useEffect(() => {
-    void getDistanceInfo();
-  }, []);
-  const tableHeaders = ['date', 'name', 'amount', 'distance'];
+  const [selectedField, setSelectedField] = useState<string>('');
+  const [selectedSortType, setSelectedSortType] = useState<string>('');
 
+  const typeSortHeaders = ['По возрастанию', 'По убыванию'];
+
+  const sortField = (sort: string): void => {
+    setSelectedField(sort);
+  };
+  const setSortType = (sort: string): void => {
+    setSelectedSortType(sort);
+  };
+
+  const fieldsHeaders = ['name', 'amount', 'distance'];
+  const filtersProps = {
+    selectedField,
+    sortField,
+    fieldsHeaders,
+    selectedSortType,
+    setSortType,
+    typeSortHeaders,
+  };
   return (
     <div>
-      <Table
-        info={distanceInfo}
-        tableHeaders={tableHeaders}
-        setDistanceInfo={setDistanceInfo}
+      <TablePage
+        selectedSortType={selectedSortType}
+        selectedField={selectedField}
       />
+      <FilterComponent props={filtersProps} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 interface CustomSelectProps {
   options: string[];
@@ -7,6 +8,23 @@ interface CustomSelectProps {
   onChange: any;
 }
 
+const Select = styled.select`
+  max-width: 200px;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  background-color: #fff;
+`;
+
 const CustomSelect: React.FC<CustomSelectProps> = ({
   options,
   defaultValue,
@@ -14,7 +32,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   onChange,
 }) => {
   return (
-    <select value={value} onChange={(event) => onChange(event.target.value)}>
+    <Select value={value} onChange={(event) => onChange(event.target.value)}>
       <option disabled value={''}>
         {defaultValue}
       </option>
@@ -23,7 +41,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
           {option}
         </option>
       ))}
-    </select>
+    </Select>
   );
 };
 
