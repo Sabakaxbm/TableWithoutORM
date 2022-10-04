@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import * as S from './style';
-import CustomInput from '../customInput/CustomInput';
 import { Distance } from '../../../models/models';
 
 interface TableProps {
@@ -8,15 +7,15 @@ interface TableProps {
   tableHeaders: string[];
   selectedField: string;
   selectedSortType: string;
+  searchQuery: string;
 }
 
 const Table: React.FC<TableProps> = ({
   info,
   tableHeaders,
   selectedField,
-  selectedSortType,
+  searchQuery,
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortedDistance, setSortedDistance] = useState<Distance[]>([]);
 
   const getSortedDistance = useMemo(() => {
@@ -34,13 +33,14 @@ const Table: React.FC<TableProps> = ({
 
   return (
     <S.TableContainer>
-      <S.TableRow>
+      <S.TableRowHeaders>
         {tableHeaders.map((el, index) => (
           <S.TableHeaders key={index.toString() + el}>
             <div>{el}</div>
           </S.TableHeaders>
         ))}
-      </S.TableRow>
+      </S.TableRowHeaders>
+      <S.TableBody></S.TableBody>
       {getSortedDistance.length > 0 ? (
         getSortedDistance.map((el) => (
           <S.TableRow key={el.id}>
@@ -52,13 +52,6 @@ const Table: React.FC<TableProps> = ({
         ))
       ) : (
         <div>Данные не найдены</div>
-      )}
-      {selectedSortType === 'По записи' && (
-        <CustomInput
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeHolder={'123'}
-        />
       )}
     </S.TableContainer>
   );

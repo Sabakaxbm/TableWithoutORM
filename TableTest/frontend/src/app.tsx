@@ -26,12 +26,11 @@ const App: React.FC = () => {
   };
   return (
     <div>
+      <FilterComponent props={filtersProps} />
       <TablePage
         selectedSortType={selectedSortType}
         selectedField={selectedField}
       />
-
-      <FilterComponent props={filtersProps} />
     </div>
   );
 };

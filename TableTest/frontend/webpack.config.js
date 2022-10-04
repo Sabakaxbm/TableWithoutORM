@@ -25,7 +25,7 @@ module.exports = {
   },
   // entry: './src/index.ts',
   output: {
-    path: path.resolve(__dirname, './docs'),
+    path: path.resolve(__dirname, './build'),
     filename: './js/[name][hash].bundle.js',
   },
 
