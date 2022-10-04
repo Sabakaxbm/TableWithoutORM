@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Table from '../components/ui/Table';
+import Table from '../components/ui/table/Table';
 import { Distance } from '../models/models';
 import { getRequest } from '../http/getTableInfo';
 import { functionSort, getPageForPagination } from '../service/utils';
@@ -24,8 +24,9 @@ const TablePage: React.FC<TablePageProps> = ({
   useEffect(() => {
     if (selectedSortType !== '' && selectedField !== '') {
       const type = functionSort[selectedSortType];
-
-      type(selectedField, distanceInfo, setDistanceInfo);
+      if (type !== null) {
+        type(selectedField, distanceInfo, setDistanceInfo);
+      }
     }
   }, [selectedSortType, selectedField]);
 
@@ -46,7 +47,12 @@ const TablePage: React.FC<TablePageProps> = ({
   }, [activePage]);
   return (
     <>
-      <Table info={distanceInfo} tableHeaders={tableHeaders} />
+      <Table
+        selectedField={selectedField}
+        info={distanceInfo}
+        tableHeaders={tableHeaders}
+        selectedSortType={selectedSortType}
+      />
       <Pagination
         activePage={activePage}
         pages={pages}

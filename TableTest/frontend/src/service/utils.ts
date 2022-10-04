@@ -9,7 +9,7 @@ export const getPageForPagination = (page: number): number[] => {
   return arr;
 };
 
-const sortByBig = (
+const ascendingSort = (
   sort: string,
   data: Distance[],
   setInfo: React.Dispatch<React.SetStateAction<any>>
@@ -21,7 +21,7 @@ const sortByBig = (
   setInfo([...data].sort((a, b) => a[sort] - b[sort]));
 };
 
-const sortBySmall = (
+const descendingSort = (
   sort: string,
   data: Distance[],
   setInfo: React.Dispatch<React.SetStateAction<any>>
@@ -34,6 +34,7 @@ const sortBySmall = (
 };
 
 export const functionSort = {
-  'По возрастанию': sortByBig,
-  'По убыванию': sortBySmall,
+  'По возрастанию': ascendingSort,
+  'По убыванию': descendingSort,
+  'По записи': null,
 };

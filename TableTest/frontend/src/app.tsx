@@ -6,8 +6,7 @@ import TablePage from './page/TablePage';
 const App: React.FC = () => {
   const [selectedField, setSelectedField] = useState<string>('');
   const [selectedSortType, setSelectedSortType] = useState<string>('');
-
-  const typeSortHeaders = ['По возрастанию', 'По убыванию'];
+  const typeSortHeaders = ['По возрастанию', 'По убыванию', 'По записи'];
 
   const sortField = (sort: string): void => {
     setSelectedField(sort);
@@ -31,6 +30,7 @@ const App: React.FC = () => {
         selectedSortType={selectedSortType}
         selectedField={selectedField}
       />
+
       <FilterComponent props={filtersProps} />
     </div>
   );

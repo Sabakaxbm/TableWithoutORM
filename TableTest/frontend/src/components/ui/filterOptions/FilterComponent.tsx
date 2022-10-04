@@ -1,15 +1,15 @@
 import React from 'react';
 import * as S from './style';
-import CustomSelect from '../CustomSelect';
+import CustomSelect from '../customSelect/CustomSelect';
 
 interface FilterProps {
   props: {
-    selectedField: any;
-    sortField: any;
-    fieldsHeaders: any;
-    selectedSortType: any;
-    setSortType: any;
-    typeSortHeaders: any;
+    selectedField: string;
+    sortField: (sort: string) => void;
+    fieldsHeaders: string[];
+    selectedSortType: string;
+    setSortType: (sort: string) => void;
+    typeSortHeaders: string[];
   };
 }
 
